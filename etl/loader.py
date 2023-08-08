@@ -6,6 +6,7 @@ from .loggerClass import LoggerObject
 from sqlalchemy.orm import sessionmaker
 import psycopg2
 import os
+from psycopg2 import IntegrityError
 
 
 class Loader:
@@ -38,7 +39,7 @@ class Loader:
         db_port = int(os.environ.get("POSTGRES_PORT", 5432))    # Default to 5432 if not set
         db_name = os.environ.get("POSTGRES_DB", "postgres")    # Default to postgres if not set
         db_user = os.environ.get("POSTGRES_USER", "postgres")  # Default to postgres if not set
-        db_password = os.environ.get("POSTGRES_PASSWORD", "mypassword")  # Default to mypassword if not set
+        db_password = os.environ.get("POSTGRES_PASSWORD", "admin")  # Default to mypassword if not set
         
         # Define url to use with sqlalchemy
         db_url = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{database_name}"
